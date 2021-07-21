@@ -1,13 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { APIKeyContext } from '../context/APIKeyContext'
 
 export default function Home () {
   const [apiKey, setApiKey] = useState('')
+
+  const apiKeyContext = useContext(APIKeyContext)
+
+  const submitApiKey = () => {
+    apiKeyContext.setApiKey(apiKey)
+  }
 
   return (
     <div>
       API Key:
       <input type="text" name="apikey" value={apiKey} onChange={e => setApiKey(e.target.value)}/>
-      <button onClick={() => console.log('clicked')}>Set Key</button>
+      <button onClick={() => submitApiKey()}>Set Key</button>
     </div>
   )
 }
