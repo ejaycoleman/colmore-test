@@ -1,5 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Home () {
-  return <h2>Home</h2>
+  const [apiKey, setApiKey] = useState('')
+
+  return (
+    <div>
+      API Key:
+      <input type="text" name="apikey" value={apiKey} onChange={e => setApiKey(e.target.value)}/>
+      <button onClick={() => console.log('clicked')}>Set Key</button>
+    </div>
+  )
 }
