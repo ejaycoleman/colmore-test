@@ -1,19 +1,17 @@
 import axios from 'axios'
 
-export function searchSymbols ({ apiKey, symbol, type, region, timezone, currency, matchscore }) {
-  axios.get('https://www.alphavantage.co/query', {
+export async function searchSymbols ({ apiKey, symbol, type, region, timezone, currency, matchscore }) {
+  return await axios.get('https://www.alphavantage.co/query', {
     params: {
       function: 'SYMBOL_SEARCH',
       apikey: apiKey,
       keywords: symbol
     }
   })
-    .then(function (response) {
-      // Response
-      console.log(response)
+    .then(response => {
+      return response
     })
-    .catch(function (error) {
-      // Error
+    .catch(error => {
       console.log(error)
     })
 }
