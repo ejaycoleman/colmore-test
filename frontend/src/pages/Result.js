@@ -28,7 +28,7 @@ export default function Result () {
 
       <table>
         <tbody>
-          {result.map((e, i) => <tr key={i}><td>{e['2. name']}: {e['1. symbol']}</td><td><button onClick={() => setSelected(e['1. symbol'])}>Show More</button></td></tr>)}
+          {result.map((e, i) => <tr key={i}><td>{e['2. name']}: {e['1. symbol']}</td><td><button onClick={() => setSelected(e)}>Show More</button></td></tr>)}
         </tbody>
       </table>
       <SymbolInformation symbol={selected} />
