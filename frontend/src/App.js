@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-} from "react-router-dom";
+  Route
+} from 'react-router-dom'
 import Home from './pages/Home'
-import Result from "./pages/Result";
+import Result from './pages/Result'
 
-export default function App() {
+export default function App () {
   return (
     <Router>
       <div>
@@ -21,5 +21,5 @@ export default function App() {
         </Switch>
       </div>
     </Router>
-  );
+  )
 }
