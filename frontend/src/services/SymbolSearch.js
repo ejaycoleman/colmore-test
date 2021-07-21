@@ -1,14 +1,11 @@
 import axios from 'axios'
-import { useContext } from 'react'
-import { APIKeyContext } from '../context/APIKeyContext'
 
-export function searchSymbols () {
-  const apiKeyContext = useContext(APIKeyContext)
-
+export function searchSymbols ({ apiKey, symbol, type, region, timezone, currency, matchscore }) {
   axios.get('https://www.alphavantage.co/query', {
     params: {
       function: 'SYMBOL_SEARCH',
-      apikey: apiKeyContext.apikey
+      apikey: apiKey,
+      keywords: symbol
     }
   })
     .then(function (response) {
