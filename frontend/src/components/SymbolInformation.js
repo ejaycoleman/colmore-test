@@ -6,7 +6,7 @@ import { timeSeriesDaily } from '../services/SymbolSearch'
 import { APIKeyContext } from '../context/APIKeyContext'
 
 export default function SymbolInformation ({ symbol }) {
-  const [dailyInfo, setDailyInfo] = useState({})
+  const [dailyInfo, setDailyInfo] = useState([])
 
   useEffect(async () => {
     if (symbol) {
@@ -31,13 +31,15 @@ export default function SymbolInformation ({ symbol }) {
           })}
         </tbody>
       </table>
-      <table>
-        <tbody>
-         {
-            dailyInfo.map((row, i) => <tr key={i}>{row.map((col, j) => <td key={j}>{col}</td>)}</tr>)
-          }
-        </tbody>
-      </table>
+      {dailyInfo && (
+        <table>
+          <tbody>
+            {
+              dailyInfo.map((row, i) => <tr key={i}>{row.map((col, j) => <td key={j}>{col}</td>)}</tr>)
+            }
+          </tbody>
+        </table>
+      )}
     </div>
   )
 }

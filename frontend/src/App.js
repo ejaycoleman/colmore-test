@@ -10,7 +10,7 @@ import Result from './pages/Result'
 export default function App () {
   return (
     <Router>
-      <div>
+      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Switch>
           <Route path="/result">
             <Result />
