@@ -3,6 +3,9 @@ import { APIKeyContext } from '../context/APIKeyContext'
 
 import { useHistory } from 'react-router-dom'
 
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
 export default function Home () {
   const [apiKey, setApiKey] = useState('')
   const history = useHistory()
@@ -15,10 +18,12 @@ export default function Home () {
   }
 
   return (
-    <div>
-      API Key:
-      <input type="text" name="apikey" value={apiKey} onChange={e => setApiKey(e.target.value)}/>
-      <button onClick={() => submitApiKey()}>Set Key</button>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <h1>Enter your API key below:</h1>
+        <TextField placeholder='API Key' type="text" name='apikey' value={apiKey} onChange={e => setApiKey(e.target.value)} style={{ marginBottom: '50px' }}/>
+        <Button variant='contained' color='primary' onClick={() => submitApiKey()}>Set Key</Button>
+      </div>
     </div>
   )
 }
