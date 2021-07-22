@@ -20,7 +20,7 @@ export default function SymbolInformation ({ symbol }) {
 
   return (
     <div>
-      <table>
+      <table style={{ margin: 20 }}>
         <tbody>
           {Object.keys(symbol).map((key, i) => {
             const data = symbol[key]
@@ -37,7 +37,7 @@ export default function SymbolInformation ({ symbol }) {
         <table>
           <tbody>
             {
-              dailyInfo.map((row, i) => <tr key={i}>{row.map((col, j) => <td key={j}>{col}</td>)}</tr>)
+              dailyInfo.map((row, i) => <tr key={i} style={{ fontWeight: i === 0 ? 'bold' : 'normal' }}>{row.map((col, j) => <td key={j}>{col}</td>)}</tr>)
             }
           </tbody>
         </table>
