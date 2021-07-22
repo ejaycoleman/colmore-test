@@ -18,10 +18,12 @@ export default function Home () {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <h1>Enter your API key below:</h1>
-      <TextField placeholder='API Key' type="text" name='apikey' value={apiKey} onChange={e => setApiKey(e.target.value)} style={{ marginBottom: '50px' }}/>
-      <Button variant='contained' color='primary' onClick={() => submitApiKey()}>Set Key</Button>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <h1>Enter your API key below:</h1>
+        <TextField placeholder='API Key' type="text" name='apikey' value={apiKey} onChange={e => setApiKey(e.target.value)} style={{ marginBottom: '50px' }}/>
+        <Button variant='contained' color='primary' onClick={() => submitApiKey()}>Set Key</Button>
+      </div>
     </div>
   )
 }
