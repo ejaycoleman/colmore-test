@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
+import { timeSeriesDaily } from '../services/SymbolSearch'
+
+import { APIKeyContext } from '../context/APIKeyContext'
+
 export default function SymbolInformation ({ symbol }) {
+  const [dailyInfo, setDailyInfo] = useState({})
+
+  useEffect(async () => {
+    if (symbol) {
+      console.log(symbol['1. symbol'])
+      const dailyInfoResult = await setDailyInfo(timeSeriesDaily({ apiKey: APIKeyContext.apiKey, symbol: symbol['1. symbol'] }))
+      setDailyInfo(dailyInfoResult)
+    }
+  }, [symbol])
+
   return (
     <div>
       <table>
@@ -17,6 +31,7 @@ export default function SymbolInformation ({ symbol }) {
           })}
         </tbody>
       </table>
+      {JSON.stringify(dailyInfo)}
     </div>
   )
 }

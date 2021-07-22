@@ -24,3 +24,23 @@ export async function searchSymbols ({ apiKey, symbol, filterTerm, filterValue }
       console.log(error)
     })
 }
+
+export async function timeSeriesDaily ({ apiKey, symbol }) {
+  return await axios.get('https://www.alphavantage.co/query', {
+    params: {
+      function: 'TIME_SERIES_INTRADAY_EXTENDED',
+      apikey: apiKey,
+      symbol,
+      interval: '60min',
+      slice: 'year1month1'
+    }
+  })
+    .then(response => {
+      // let data = response.data.bestMatches
+      console.log(response)
+      return response
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
