@@ -12,7 +12,7 @@ export default function SymbolInformation ({ symbol }) {
     if (symbol) {
       console.log(symbol['1. symbol'])
       const dailyInfoResult = await timeSeriesDaily({ apiKey: APIKeyContext.apiKey, symbol: symbol['1. symbol'] })
-      setDailyInfo(dailyInfoResult.data)
+      dailyInfoResult && setDailyInfo(dailyInfoResult.data)
     }
   }, [symbol])
 
