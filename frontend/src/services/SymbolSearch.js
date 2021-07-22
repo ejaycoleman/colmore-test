@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import Papa from 'papaparse'
+
 export async function searchSymbols ({ apiKey, symbol, filterTerm, filterValue }) {
   return await axios.get('https://www.alphavantage.co/query', {
     params: {
@@ -36,9 +38,8 @@ export async function timeSeriesDaily ({ apiKey, symbol }) {
     }
   })
     .then(response => {
-      // let data = response.data.bestMatches
-      console.log(response)
-      return response
+      const csvParsed = Papa.parse(response.data)
+      return csvParsed
     })
     .catch(error => {
       console.log(error)

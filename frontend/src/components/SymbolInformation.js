@@ -11,8 +11,8 @@ export default function SymbolInformation ({ symbol }) {
   useEffect(async () => {
     if (symbol) {
       console.log(symbol['1. symbol'])
-      const dailyInfoResult = await setDailyInfo(timeSeriesDaily({ apiKey: APIKeyContext.apiKey, symbol: symbol['1. symbol'] }))
-      setDailyInfo(dailyInfoResult)
+      const dailyInfoResult = await timeSeriesDaily({ apiKey: APIKeyContext.apiKey, symbol: symbol['1. symbol'] })
+      setDailyInfo(dailyInfoResult.data)
     }
   }, [symbol])
 
@@ -31,7 +31,13 @@ export default function SymbolInformation ({ symbol }) {
           })}
         </tbody>
       </table>
-      {JSON.stringify(dailyInfo)}
+      <table>
+        <tbody>
+         {
+            dailyInfo.map((row, i) => <tr key={i}>{row.map((col, j) => <td key={j}>{col}</td>)}</tr>)
+          }
+        </tbody>
+      </table>
     </div>
   )
 }
