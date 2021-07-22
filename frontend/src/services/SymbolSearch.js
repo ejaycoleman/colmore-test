@@ -45,3 +45,19 @@ export async function timeSeriesDaily ({ apiKey, symbol }) {
       console.log(error)
     })
 }
+
+export async function currentQuote ({ apiKey, symbol }) {
+  return await axios.get('https://www.alphavantage.co/query', {
+    params: {
+      function: 'GLOBAL_QUOTE',
+      apikey: apiKey,
+      symbol
+    }
+  })
+    .then(response => {
+      return response.data
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
