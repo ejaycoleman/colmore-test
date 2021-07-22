@@ -38,8 +38,6 @@ export async function timeSeriesDaily ({ apiKey, symbol }) {
     }
   })
     .then(response => {
-      console.log(response)
-
       const csvParsed = Papa.parse(response.data)
 
       const newData = csvParsed.data.map((row, i) => {
@@ -53,8 +51,6 @@ export async function timeSeriesDaily ({ apiKey, symbol }) {
           volume: row[5]
         }
       })
-
-      console.log(newData)
 
       return newData
     })

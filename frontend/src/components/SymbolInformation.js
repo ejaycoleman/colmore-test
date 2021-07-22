@@ -58,7 +58,6 @@ export default function SymbolInformation ({ symbol }) {
       <div style={{ height: 400, width: '100%' }}>
         {dailyInfo.length !== 0 && <DataGrid disableColumnResize={false} rows={[...dailyInfo].slice(1)} columns={Object.keys(dailyInfo[0]).map(x => { return { field: x, width: 200 } })} pageSize={5} />}
       </div>
-      {dailyInfo.length !== 0 && console.log(dailyInfo)}
     </div>
   )
 }
