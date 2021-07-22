@@ -25,8 +25,8 @@ export default function Result () {
   }
 
   return (
-    <div>
-      <div style={{ marginTop: '100px' }}>
+    <div style={{ marginTop: '100px', width: '100%' }} >
+      <div style={{ display: 'flex', alignContent: 'center', alignItems: 'center', justifyContent: 'center' }} >
         <TextField placeholder='search' value={searchTerm} onChange={e => setSearchTerm(e.target.value)}></TextField>
         {/* <TextField placeholder='filter term' value={filterTerm} onChange={e => setFilterTerm(e.target.value)}></TextField> */}
         <Select
@@ -49,12 +49,16 @@ export default function Result () {
         <TextField placeholder='filter value' value={filterValue} onChange={e => setFilterValue(e.target.value)}></TextField>
         <Button onClick={() => submit()}>Search</Button>
       </div>
-      <table>
-        <tbody>
-          {result.map((e, i) => <tr key={i}><td>{e['2. name']}: {e['1. symbol']}</td><td><button onClick={() => setSelected(e)}>Show More</button></td></tr>)}
-        </tbody>
-      </table>
-      <SymbolInformation symbol={selected} />
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <table>
+          <tbody>
+            {result.map((e, i) => <tr key={i}><td>{e['2. name']}: {e['1. symbol']}</td><td><Button onClick={() => setSelected(e)}>Show More</Button></td></tr>)}
+          </tbody>
+        </table>
+        <div style={{ width: '100%' }}>
+          <SymbolInformation symbol={selected} />
+        </div>
+      </div>
     </div>
   )
 }

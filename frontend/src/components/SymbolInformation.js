@@ -5,6 +5,8 @@ import { timeSeriesDaily, currentQuote } from '../services/SymbolSearch'
 
 import { APIKeyContext } from '../context/APIKeyContext'
 
+import { DataGrid } from '@material-ui/data-grid'
+
 export default function SymbolInformation ({ symbol }) {
   const [dailyInfo, setDailyInfo] = useState([])
   const [currentQuoteValue, setCurrentQuoteValue] = useState({})
@@ -15,7 +17,7 @@ export default function SymbolInformation ({ symbol }) {
     if (symbol) {
       console.log(symbol['1. symbol'])
       const dailyInfoResult = await timeSeriesDaily({ apiKey: apiKeyContext.apiKey, symbol: symbol['1. symbol'] })
-      dailyInfoResult && setDailyInfo(dailyInfoResult.data)
+      dailyInfoResult && setDailyInfo(dailyInfoResult)
 
       const getCurrentQuote = await currentQuote({ apiKey: apiKeyContext.apiKey, symbol: symbol['1. symbol'] })
       setCurrentQuoteValue(getCurrentQuote['Global Quote'])
@@ -23,7 +25,7 @@ export default function SymbolInformation ({ symbol }) {
   }, [symbol])
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', justifyItems: 'center', justifyContent: 'center', alignItems: 'center' }}>
       <h2>Symbol Info</h2>
       <table style={{ margin: 20 }}>
         <tbody>
@@ -53,15 +55,10 @@ export default function SymbolInformation ({ symbol }) {
         </tbody>
       </table>
       <h2>Historical prices (daily)</h2>
-      {dailyInfo && (
-        <table>
-          <tbody>
-            {
-              dailyInfo.map((row, i) => <tr key={i} style={{ fontWeight: i === 0 ? 'bold' : 'normal' }}>{row.map((col, j) => <td key={j}>{col}</td>)}</tr>)
-            }
-          </tbody>
-        </table>
-      )}
+      <div style={{ height: 400, width: '100%' }}>
+        {dailyInfo.length !== 0 && <DataGrid disableColumnResize={false} rows={[...dailyInfo].slice(1)} columns={Object.keys(dailyInfo[0]).map(x => { return { field: x, width: 200 } })} pageSize={5} />}
+      </div>
+      {dailyInfo.length !== 0 && console.log(dailyInfo)}
     </div>
   )
 }
