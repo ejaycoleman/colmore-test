@@ -24,6 +24,10 @@ export default function SymbolInformation ({ symbol }) {
     }
   }, [symbol])
 
+  const generateDataGridColumns = (labelArray) => {
+    return Object.keys(labelArray).map(x => { return { field: x, width: 200 } })
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyItems: 'center', justifyContent: 'center', alignItems: 'center' }}>
       <h2>Symbol Info</h2>
@@ -56,7 +60,7 @@ export default function SymbolInformation ({ symbol }) {
       </table>
       <h2>Historical prices (daily)</h2>
       <div style={{ height: 400, width: '100%' }}>
-        {dailyInfo.length !== 0 && <DataGrid disableColumnResize={false} rows={[...dailyInfo].slice(1)} columns={Object.keys(dailyInfo[0]).map(x => { return { field: x, width: 200 } })} pageSize={5} />}
+        {dailyInfo.length !== 0 && <DataGrid disableColumnResize={false} rows={[...dailyInfo].slice(1)} columns={generateDataGridColumns(dailyInfo[0])} pageSize={5} />}
       </div>
     </div>
   )
