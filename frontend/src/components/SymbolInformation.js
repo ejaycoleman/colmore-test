@@ -30,45 +30,51 @@ export default function SymbolInformation ({ symbol }) {
     return Object.keys(labelArray).map(x => { return { field: x, width: 200 } })
   }
 
+  const RenderInfoTable = ({ info }) => {
+    return (
+      <table style={{ margin: 20 }}>
+        <tbody>
+          {Object.keys(info).map((key, i) => {
+            const data = info[key]
+            return (
+              <tr key={i}>
+                <td>{key}</td>
+                <td>{data}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    )
+  }
+
+  RenderInfoTable.propTypes = {
+    info: PropTypes.object
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyItems: 'center', justifyContent: 'center', alignItems: 'center' }}>
       <div style={{ display: 'flex' }}>
-        <Card style={{ margin: '10px' }}>
-          <CardContent>
-            <h2>Symbol Info</h2>
-            <table style={{ margin: 20 }}>
-              <tbody>
-                {Object.keys(symbol).map((key, i) => {
-                  const data = symbol[key]
-                  return (
-                    <tr key={i}>
-                      <td>{key}</td>
-                      <td>{data}</td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </CardContent>
-        </Card>
-        <Card style={{ margin: '10px' }}>
-          <CardContent>
-            <h2>Current Quote</h2>
-            <table style={{ margin: 20 }}>
-              <tbody>
-                {Object.keys(currentQuoteValue).map((key, i) => {
-                  const data = currentQuoteValue[key]
-                  return (
-                    <tr key={i}>
-                      <td>{key}</td>
-                      <td>{data}</td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </CardContent>
-        </Card>
+        {
+          symbol && (
+            <Card style={{ margin: '10px' }}>
+              <CardContent>
+                <h2>Symbol Info</h2>
+                <RenderInfoTable info={symbol} />
+              </CardContent>
+            </Card>
+          )
+        }
+        {
+          currentQuoteValue && (
+            <Card style={{ margin: '10px' }}>
+              <CardContent>
+                <h2>Current Quote</h2>
+                <RenderInfoTable info={ currentQuoteValue } />
+              </CardContent>
+            </Card>
+          )
+        }
       </div>
       <h2>Historical prices (daily)</h2>
       <div style={{ height: 400, width: '100%' }}>
