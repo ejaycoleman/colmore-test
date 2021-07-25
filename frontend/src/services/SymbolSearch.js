@@ -59,6 +59,30 @@ export async function timeSeriesDaily ({ apiKey, symbol }) {
     })
 }
 
+export async function timeSeriesWeekly ({ apiKey, symbol }) {
+  return await axios.get('https://www.alphavantage.co/query', {
+    params: {
+      function: 'TIME_SERIES_WEEKLY',
+      apikey: apiKey,
+      symbol
+    }
+  })
+    .then(response => {
+      const newData = Object.keys(response.data['Weekly Time Series']).map((row, i) => {
+        return {
+          id: i,
+          time: row,
+          ...response.data['Weekly Time Series'][row]
+        }
+      })
+
+      return newData
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
+
 export async function currentQuote ({ apiKey, symbol }) {
   return await axios.get('https://www.alphavantage.co/query', {
     params: {
