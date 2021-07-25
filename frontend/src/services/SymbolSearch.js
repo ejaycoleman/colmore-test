@@ -98,3 +98,30 @@ export async function currentQuote ({ apiKey, symbol }) {
       console.log(error)
     })
 }
+
+export async function getIndicators ({ apiKey, symbol }) {
+  return await axios.get('https://www.alphavantage.co/query', {
+    params: {
+      function: 'SMA',
+      apikey: apiKey,
+      symbol,
+      interval: 'weekly',
+      time_period: 10,
+      series_type: 'open'
+    }
+  })
+    .then(response => {
+      const newData = Object.keys(response.data['Technical Analysis: SMA']).map((row, i) => {
+        return {
+          id: i,
+          time: row,
+          ...response.data['Technical Analysis: SMA'][row]
+        }
+      })
+
+      return newData
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
