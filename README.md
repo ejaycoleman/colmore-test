@@ -11,7 +11,7 @@ Frontend is a React web app which runs on localhost:3000
 3. `yarn start`
 4. Navigate to `localhost:3000`
 5. Enter an API key, generated from [https://www.alphavantage.co/support/#api-key](https://www.alphavantage.co/support/#api-key)
-6. Enter a symbol (or example 'Microsoft'). Click Show More on a symbol to display more information. 
+6. Enter a symbol (for example 'Microsoft'). Click Show More on a symbol to display more information. 
 
 # Screenshots
 ## Homepage
