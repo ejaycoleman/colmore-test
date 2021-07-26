@@ -52,7 +52,7 @@ export default function Result () {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <table>
           <tbody>
-            {result.map((e, i) => <tr key={i}><td>{e['2. name']}: {e['1. symbol']}</td><td><Button onClick={() => setSelected(e)}>Show More</Button></td></tr>)}
+            {result && result.map((e, i) => <tr key={i}><td>{e['2. name']}: {e['1. symbol']}</td><td><Button onClick={() => setSelected(e)}>Show More</Button></td></tr>)}
           </tbody>
         </table>
         <div style={{ width: '100%' }}>
