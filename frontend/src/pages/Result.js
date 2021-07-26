@@ -26,9 +26,9 @@ export default function Result () {
 
   return (
     <div style={{ marginTop: '100px', width: '100%' }} >
+      <h1 style={{ textAlign: 'center' }}>Search for a symbol</h1>
       <div style={{ display: 'flex', alignContent: 'center', alignItems: 'center', justifyContent: 'center' }} >
         <TextField placeholder='search' value={searchTerm} onChange={e => setSearchTerm(e.target.value)}></TextField>
-        {/* <TextField placeholder='filter term' value={filterTerm} onChange={e => setFilterTerm(e.target.value)}></TextField> */}
         <Select
           placeholder='filter'
           labelId="demo-simple-select-label"
@@ -56,7 +56,7 @@ export default function Result () {
           </tbody>
         </table>
         <div style={{ width: '100%' }}>
-          <SymbolInformation symbol={selected} />
+        {selected && <SymbolInformation symbol={selected} />}
         </div>
       </div>
     </div>
